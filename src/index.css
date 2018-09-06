@@ -6,13 +6,13 @@ body {
 
 .container-drag {
   text-align: center;
-  left: 100px;
 }
 
 .function-item{
   text-align: center;
   display: flex;
-  border: dotted
+  border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .wip {
@@ -45,22 +45,24 @@ body {
   height: 100vh;
   left: 200px;
   top: 20;
-  background-color: slateblue;
+  background-color: whitesmoke;
   border-left: 1px dotted;
 }
 
 .draggable {
-  width: 100px;
+  width: 150px;
   height: 50px;
   background-color: yellow;
   margin: 5px auto;
+  border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   /* line-height: 5em; */
 }
 
 .place-holder {
   height: 100px auto;
-  background-color: darkgreen;
-  border: black dotted;
-  margin: 5px auto;
+  background-color: cyan;
+  border: dotted;
+  margin: 5px;
   flex-grow: 1;
 }

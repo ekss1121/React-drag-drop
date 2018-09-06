@@ -7,7 +7,8 @@ class Expression extends Component {
         tasks: [
             {name: "Learn Angular", category:"wip", bgcolor: "yellow", args: 2, express: false},
             {name: "React", category: "wip", bgcolor: "pink", args: 1, express: false},
-            {name: "Vue", category: "wip", bgcolor: "skyblue", args: 3, express: false}
+            {name: "Vue", category: "wip", bgcolor: "skyblue", args: 3, express: false},
+            {name: "Angular", category: "wip", bgcolor: "grey", args: 0, express: false}
         ]
     }
 
