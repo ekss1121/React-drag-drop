@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container-drag {
+  text-align: center;
+  left: 100px;
+}
+
+.function-item{
+  text-align: center;
+  display: flex;
+  border: dotted
+}
+
+.wip {
+  position: absolute;
+  width: 150px;
+  height: 100vh;
+  left: 0;
+  top: 10;
+  background-color: white;
+  border-right: 1px dotted;
+}
+
+.header {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  background-color: darkred;
+  width: 100%;
+}
+
+.task-header {
+  display: inline-block;
+  background-color: skyblue;
+  width: 100%;
+}
+
+.droppable {
+  position: absolute;
+  width: 700px;
+  height: 100vh;
+  left: 200px;
+  top: 20;
+  background-color: slateblue;
+  border-left: 1px dotted;
+}
+
+.draggable {
+  width: 100px;
+  height: 50px;
+  background-color: yellow;
+  margin: 5px auto;
+  /* line-height: 5em; */
+}
+
+.place-holder {
+  height: 100px auto;
+  background-color: darkgreen;
+  border: black dotted;
+  margin: 5px auto;
+  flex-grow: 1;
+}
