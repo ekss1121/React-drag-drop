@@ -3,6 +3,16 @@ import './index.css'
 
 class FunctionItems extends Component{
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            name: this.props.name,
+            args: this.props.args,
+            bgcolor: this.props.bgcolor,
+            express: false,
+        }
+    }
 
     onDragStart = (ev, id) =>{
         // console.log('drag start:', id);
@@ -14,9 +24,9 @@ class FunctionItems extends Component{
         const icon = (
             <div
                 className="draggable"
-                style={{backgroundColor: this.props.bgcolor}}
+                style={{backgroundColor: this.state.bgcolor}}
             >
-                {this.props.name}
+                {this.state.name}
             </div>
         );
 
@@ -26,7 +36,7 @@ class FunctionItems extends Component{
                 <div 
                     key = {i}
                     className="place-holder" 
-                    style={{display: this.props.express ? "inline" : "none"}}
+                    style={{display: this.state.express ? "inline" : "none"}}
                 >
                     place holder
                 </div>
@@ -34,7 +44,7 @@ class FunctionItems extends Component{
         }
         return (
             <div className="function-item" draggable
-            onDragStart = {(e) => this.onDragStart(e, this.props.name)}>
+            onDragStart = {(e, id) => this.onDragStart(e, this.state.name)}>
                 {icon}
                 {placeHolders}
             </div>

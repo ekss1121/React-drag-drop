@@ -1,74 +1,72 @@
 import React, {Component} from 'react';
 import './index.css';
 import FunctionItems from './FunctionItems.js'
+import FunctionList from './FunctionList.js'
+import FunctionHolder from './FunctionHolder.js'
 class Expression extends Component {
 
     state = {
         tasks: [
-            {name: "Learn Angular", category:"wip", bgcolor: "yellow", args: 2, express: false},
-            {name: "React", category: "wip", bgcolor: "pink", args: 1, express: false},
-            {name: "Vue", category: "wip", bgcolor: "skyblue", args: 3, express: false},
-            {name: "Angular", category: "wip", bgcolor: "grey", args: 0, express: false}
-        ]
+            {name: "function-1", bgcolor: "yellow", args: 2},
+            {name: "function-0", bgcolor: "pink", args: 1},
+            {name: "smart-function", bgcolor: "skyblue", args: 3},
+            {name: "userful-function", bgcolor: "grey", args: 0}
+        ],
     }
 
-    onDragOver = (ev) =>{
-        ev.preventDefault();
-    }
+    // onDragOver = (ev) =>{
+    //     ev.preventDefault();
+    // }
 
-    onDrop = (ev, cat) => {
-        let id = ev.dataTransfer.getData("id");
+    // onDrop = (ev, cat) => {
+    //     let id = ev.dataTransfer.getData("id");
 
         
 
-        let tasks = this.state.tasks.filter((task) =>{
-            if (task.name === id){
-                task.category = cat;
-                task.express = true;
-            }
+    //     let tasks = this.state.tasks.filter((task) =>{
+    //         if (task.name === id){
+    //             task.category = cat;
+    //             task.express = true;
+    //         }
 
-            return task;
-        })
+    //         return task;
+    //     })
 
-        this.setState({
-            ...this.state,
-            tasks
-        })
-    }
+    //     this.setState({
+    //         ...this.state,
+    //         tasks
+    //     })
+    // }
 
-    onDropBack = (ev, cat) => {
-        let id = ev.dataTransfer.getData("id");
+    // onDropBack = (ev, cat) => {
+    //     let id = ev.dataTransfer.getData("id");
 
         
-        console.log(id);
+    //     console.log(id);
         
-        let tasks = this.state.tasks.filter((task) =>{
-            if (task.name === id){
-                task.category = cat;
-                task.express = false;
-            }
+    //     let tasks = this.state.tasks.filter((task) =>{
+    //         if (task.name === id){
+    //             task.category = cat;
+    //             task.express = false;
+    //         }
 
-            return task;
-        })
+    //         return task;
+    //     })
 
-        this.setState({
-            ...this.state,
-            tasks
-        })
-    }
+    //     this.setState({
+    //         ...this.state,
+    //         tasks
+    //     })
+    // }
 
     render() {
-        var tasks = {
-            wip: [],
-            complete: []
-        };
+        var tasks =[];
         this.state.tasks.forEach((t) => {
-            tasks[t.category].push(
+            tasks.push(
                 <FunctionItems
                 key={t.name} 
                 bgcolor = {t.bgcolor}
                 name = {t.name}
-                express = {t.express}
                 args = {t.args}
                 >
 
@@ -78,20 +76,8 @@ class Expression extends Component {
         return (
             <div className="container-drag">
                 <h2 className="header">Expression App</h2>
-                <div className="wip"
-                    onDragOver = { (e) => {this.onDragOver(e)}}
-                    onDrop = { (e) => {this.onDropBack(e, "wip")}}
-                >
-                    <span className="task-header">Functions</span>
-                    {tasks.wip}
-                </div>
-                <div className="droppable" 
-                    onDragOver= { (e) => this.onDragOver(e)}
-                    onDrop = {(e) => this.onDrop(e, "complete")}
-                >
-                    <span className="task-header">Express Area</span>
-                    {tasks.complete}
-                </div>
+                <FunctionList items={tasks}></FunctionList>
+                <FunctionHolder items = {tasks}></FunctionHolder>
             </div>
         );
 
