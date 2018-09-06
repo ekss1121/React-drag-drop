@@ -19,34 +19,36 @@ body {
   position: absolute;
   width: 150px;
   height: 100vh;
-  left: 0;
+  left: 15;
   top: 10;
   background-color: white;
-  border-right: 1px dotted;
+  border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .header {
   display: inline-block;
-  margin: 0;
+  margin: 15;
   padding: 0;
-  background-color: darkred;
+  background-color: whitesmoke;
   width: 100%;
 }
 
 .task-header {
   display: inline-block;
-  background-color: skyblue;
+  background-color: rgb(202, 95, 52);
   width: 100%;
 }
 
 .droppable {
   position: absolute;
-  width: 700px;
+  width: 900px;
   height: 100vh;
   left: 200px;
   top: 20;
   background-color: whitesmoke;
-  border-left: 1px dotted;
+  border-radius: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .draggable {

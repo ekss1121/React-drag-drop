@@ -28,7 +28,7 @@ class FunctionItems extends Component{
                     className="place-holder" 
                     style={{display: this.props.express ? "inline" : "none"}}
                 >
-                    place holder
+                    function input
                 </div>
             );
         }

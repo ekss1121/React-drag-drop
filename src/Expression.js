@@ -5,10 +5,10 @@ class Expression extends Component {
 
     state = {
         tasks: [
-            {name: "Learn Angular", category:"wip", bgcolor: "yellow", args: 2, express: false},
-            {name: "React", category: "wip", bgcolor: "pink", args: 1, express: false},
-            {name: "Vue", category: "wip", bgcolor: "skyblue", args: 3, express: false},
-            {name: "Angular", category: "wip", bgcolor: "grey", args: 0, express: false}
+            {name: "f(a,b)", category:"wip", bgcolor: "yellow", args: 2, express: false},
+            {name: "f(a)", category: "wip", bgcolor: "pink", args: 1, express: false},
+            {name: "f(x,y,z)", category: "wip", bgcolor: "skyblue", args: 3, express: false},
+            {name: "f()", category: "wip", bgcolor: "grey", args: 0, express: false}
         ]
     }
 
