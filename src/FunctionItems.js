@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './index.css'
 
-// import FunctionHolder from './FunctionHolder.js'
 
 class FunctionItems extends Component{
 
     constructor(props){
         super(props);
+        this.show = [];
+        for(var i=0; i<props.args; i++){
+            this.show.push([]);
+        }
+        // console.log(this.show);
+
 
         this.state = {
             name: this.props.name,
@@ -14,8 +19,9 @@ class FunctionItems extends Component{
             bgcolor: this.props.bgcolor,
             express: this.props.express,
             itemList: this.props.items,
-            show:[],
+            show: this.show,
         }
+        
     }
 
     onDragStart = (ev, id) =>{
@@ -25,13 +31,15 @@ class FunctionItems extends Component{
 
     onDrop = (ev) => {
         ev.stopPropagation();
+        let index = ev.target.id;
         let id = ev.dataTransfer.getData("id");
         var array = this.state.show.slice();
         this.state.itemList.forEach(item => {
-            if(item.name === id && !array.includes(id)){
-                array.push(id);
+            if(item.name === id && !array[index].includes(id)){
+                array[index].push(id);
             }
         });
+
 
         this.setState({show: array});
     };
@@ -39,9 +47,12 @@ class FunctionItems extends Component{
     onDoubleClick = (e) =>{
         e.stopPropagation();
         let id = e.target.innerText;
+        let key = e.currentTarget.id;
+        console.log(key);
+        
         var array = this.state.show.slice();
-        var index = array.indexOf(id);
-        array.splice(index,1);
+        var index = array[key].indexOf(id);
+        array[key].splice(index,1);
         this.setState({show: array});
     }
 
@@ -57,18 +68,26 @@ class FunctionItems extends Component{
         );
 
         var tasks = [];
+        for(var j=0; j<this.state.args; j++){
+            tasks.push([]);
+        }
+        // console.log(this.state);
+        
         var show = this.state.show.slice();
         this.state.itemList.forEach(item => {
-            if(show.includes(item.name)){
-                const newItem = <FunctionItems
-                key={item.name} 
-                bgcolor = {item.bgcolor}
-                name = {item.name}
-                args = {item.args}
-                express = {true}
-                items = {this.state.itemList}
-                />
-            tasks.push(newItem);
+
+            for(var i=0; i<this.state.args; i++){
+                if(show[i].includes(item.name)){
+                    const newItem = <FunctionItems
+                    key={item.name} 
+                    bgcolor = {item.bgcolor}
+                    name = {item.name}
+                    args = {item.args}
+                    express = {true}
+                    items = {this.state.itemList}
+                    />
+                tasks[i].push(newItem);
+                }
             }
             
         });
@@ -78,12 +97,13 @@ class FunctionItems extends Component{
             placeHolders.push(
                 <div 
                     key = {i}
+                    id = {i}
                     onDrop = {(e) => {this.onDrop(e)}}
                     onDoubleClick = {(e) => {this.onDoubleClick(e)}}
                     className="place-holder" 
                     style={{display: this.state.express ? "inline" : "none"}}
                 >
-                    {tasks}
+                    {tasks[i]}
                 </div>
             );
         }

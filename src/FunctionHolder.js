@@ -52,6 +52,7 @@ class FunctionHolder extends Component{
                 args = {item.args}
                 express = {true}
                 items = {this.state.itemList}
+
                 />
             tasks.push(newItem);
             }
