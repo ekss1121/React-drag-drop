@@ -103,11 +103,7 @@ class FunctionItems extends Component{
                     className="place-holder" 
                     style={{display: this.state.express ? "inline" : "none"}}
                 >
-<<<<<<< HEAD
-                    function input
-=======
                     {tasks[i]}
->>>>>>> complex
                 </div>
             );
         }

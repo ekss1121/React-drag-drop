@@ -19,16 +19,6 @@ body {
 }
 
 .wip {
-<<<<<<< HEAD
-  position: absolute;
-  width: 150px;
-  height: 100vh;
-  left: 15;
-  top: 10;
-  background-color: white;
-  border-radius: 3px;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-=======
   float: left;
   margin-right: 5px;
   width: 15%;
@@ -37,7 +27,6 @@ body {
   top: 10;
   background-color: white;
   border: 1px dotted;
->>>>>>> complex
 }
 
 .header {
@@ -65,23 +54,12 @@ body {
 }
 
 .droppable {
-<<<<<<< HEAD
-  position: absolute;
-  width: 900px;
-  height: 100vh;
-  left: 200px;
-  top: 20;
-  background-color: whitesmoke;
-  border-radius: 3px;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-=======
   float: left;
   padding-left: 20px;
   width: 82%;
   height: 70vh;
   top: 20;
   background-color: whitesmoke;
->>>>>>> complex
 }
 
 .draggable {
