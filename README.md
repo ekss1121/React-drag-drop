@@ -1,3 +1,15 @@
+## Quick Start:
+
+1. Install npm on your computer
+2. Run: `npm start` to run the server
+3. run : `npm install` if node modules missing
+4. open `localhost:3000' in your browser
+
+This project also available on Github:
+https://github.com/ekss1121/React-drag-drop
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
