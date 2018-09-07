@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './index.css'
+import FunctionItems from './FunctionItems';
 
 class FunctionList extends Component{
 
@@ -12,53 +13,29 @@ class FunctionList extends Component{
         }
     }
     
-    onDragStart = (ev) => {
-        let id = ev.dataTransfer.getData("id");
-        var array = [];
-        this.state.itemList.forEach(item => {
-            if(item.key !== id){
-                array.push(item);
-            }
-        });
-
-        this.setState({show: array});
-    }
     onDragOver = (ev) =>{
-        // ev.preventDefault();
-    }
-
-    onDrop = (ev, cat) => {
-        // let id = ev.dataTransfer.getData("id");
-
-        
-
-        // let tasks = this.state.tasks.filter((task) =>{
-        //     if (task.name === id){
-        //         task.category = cat;
-        //         task.express = true;
-        //     }
-
-        //     return task;
-        // })
-
-        // this.setState(
-        //     ...this.state,
-        //     tasks
-        // })
+        ev.preventDefault();
     }
 
     render() {
         var tasks = [];
         this.state.show.forEach(element => {
-            tasks.push(element);
+            const newItem = <FunctionItems
+                key={element.name} 
+                bgcolor = {element.bgcolor}
+                name = {element.name}
+                args = {element.args}
+                express = {false}
+                items = {this.state.itemList}
+            
+            />
+            tasks.push(newItem);
         });
 
         return(
             <div className="wip"
-                    onDragStart = {(e) => {this.onDragStart(e)}}
-                    // onDragOver = { (e) => {this.onDragOver(e)}}
-                    // onDrop = { (e) => {this.onDrop(e, "wip")}}
                 >
+                <span className="task-header">Fucntion List</span>
                     {tasks}
             </div>
         );
