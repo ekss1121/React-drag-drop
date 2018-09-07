@@ -34,7 +34,7 @@ body {
   display: inline-block;
   margin: 15;
   padding: 0;
-  background-color: whitesmoke;
+  background-color: rgb(110, 14, 14);
   width: 100%;
 }
 
@@ -49,7 +49,7 @@ body {
 
 .task-header {
   display: inline-block;
-  background-color: rgb(202, 95, 52);
+  background-color: lightblue;
   width: 100%;
 }
 
