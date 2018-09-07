@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import './index.css';
-import FunctionItems from './FunctionItems.js'
-class Expression extends Component {
 
+import FunctionList from './FunctionList.js'
+import FunctionHolder from './FunctionHolder.js'
+class Expression extends Component {
     state = {
         tasks: [
+<<<<<<< HEAD
             {name: "f(a,b)", category:"wip", bgcolor: "yellow", args: 2, express: false},
             {name: "f(a)", category: "wip", bgcolor: "pink", args: 1, express: false},
             {name: "f(x,y,z)", category: "wip", bgcolor: "skyblue", args: 3, express: false},
@@ -55,44 +57,36 @@ class Expression extends Component {
             ...this.state,
             tasks
         })
+=======
+            {name: "f(x,y,z)", bgcolor: "green", args: 3},
+            {name: "g(x,y,z)", bgcolor: "yellow", args: 3},
+            {name: "f(x,y)", bgcolor: "blue", args: 2},
+            {name: "g(x,y)", bgcolor: "pink", args: 2},
+            {name: "f(x)", bgcolor: "skyblue", args: 1},
+            {name: "f()", bgcolor: "grey", args: 0},
+        ],
+>>>>>>> complex
     }
 
     render() {
-        var tasks = {
-            wip: [],
-            complete: []
-        };
-        this.state.tasks.forEach((t) => {
-            tasks[t.category].push(
-                <FunctionItems
-                key={t.name} 
-                bgcolor = {t.bgcolor}
-                name = {t.name}
-                express = {t.express}
-                args = {t.args}
-                >
-
-                </FunctionItems>
-            );
-        });
         return (
-            <div className="container-drag">
-                <h2 className="header">Expression App</h2>
-                <div className="wip"
-                    onDragOver = { (e) => {this.onDragOver(e)}}
-                    onDrop = { (e) => {this.onDropBack(e, "wip")}}
-                >
-                    <span className="task-header">Functions</span>
-                    {tasks.wip}
+
+                <div className="container-drag">
+                    <h2 className="header">Expression App</h2>
+                    
+                    <FunctionList items={this.state.tasks}/>
+                    <FunctionHolder items = {this.state.tasks}/>
+                    <div className="user-guide">
+
+                        <ul>
+                            <li>User Guide: Drag function from function list and drop into express area to add function; </li>
+                            <li>Double click to remove a function</li>
+                            <li>Place holder can take function as input, which will create a expression chain.</li>
+                        </ul>
+                    
+                    </div>
                 </div>
-                <div className="droppable" 
-                    onDragOver= { (e) => this.onDragOver(e)}
-                    onDrop = {(e) => this.onDrop(e, "complete")}
-                >
-                    <span className="task-header">Express Area</span>
-                    {tasks.complete}
-                </div>
-            </div>
+            
         );
 
     }
