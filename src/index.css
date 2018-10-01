@@ -4,11 +4,12 @@ body {
   font-family: sans-serif;
 }
 
-.container-drag {
+.icon{
   text-align: center;
-  width: 90%;
-  margin: 0 auto;
-  padding: 5px;
+  display: flex;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  height: 50px;
 }
 
 .function-item{
@@ -18,27 +19,46 @@ body {
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-.wip {
+.wip{
   float: left;
-  margin-right: 5px;
-  width: 15%;
+  margin: 1.5%;
+  width: 152px;
   height: 70vh;
-  left: 0;
-  top: 10;
   background-color: white;
   border: 1px dotted;
 }
 
-.header {
+.droppable {
+  float: right;
+  margin: 1.5%;
+  width: 70%;
+  height: 100vh;
+  top: 20;
+  background-color: whitesmoke;
+}
+
+.draggable {
+  width: 150px;
+  height: 50px;
+  background-color: yellow;
+  border: 1px green;
+  border-radius: 3px;
+  margin: 3px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  /* line-height: 5em; */
+}
+
+header {
+  text-align: center;
   color: white;
+  font-size: 25px;
+  height: 30px;
   display: inline-block;
-  margin: 15;
-  padding: 0;
   background-color: rgb(110, 14, 14);
   width: 100%;
 }
 
-.user-guide{
+footer{
     color: white;
     display: inline-block;
     margin: 0;
@@ -48,29 +68,14 @@ body {
 }
 
 .task-header {
+  text-align: center;
+  height: 25px;
+  font-size: 20px;
   display: inline-block;
   background-color: lightblue;
   width: 100%;
 }
 
-.droppable {
-  float: left;
-  padding-left: 20px;
-  width: 82%;
-  height: 70vh;
-  top: 20;
-  background-color: whitesmoke;
-}
-
-.draggable {
-  width: 150px;
-  height: 50px;
-  background-color: yellow;
-  margin: 5px auto;
-  border: 1px green;
-  border-radius: 3px;
-  /* line-height: 5em; */
-}
 
 .place-holder {
   height: 100px auto;
@@ -83,5 +88,13 @@ body {
 }
 
 .user-guide{
-  float: bottom;
+  font-size:12px;
+
+}
+
+header,
+section,
+aside,
+footer {
+  margin: 0 1.5% 24px 1.5%;
 }

@@ -1,6 +1,24 @@
 import React, {Component} from 'react';
 import './index.css'
-import FunctionItems from './FunctionItems';
+
+class FunctionIcon extends Component{
+
+    onDragStart = (e, id) =>{
+        e.dataTransfer.setData("id", id);
+    }
+
+    render(){
+        return(
+            <div className="icon" 
+            style={{backgroundColor: this.props.bgcolor}}
+            draggable
+            onDragStart = {(e, id) => this.onDragStart(e, this.props.name)}>
+                {this.props.name}
+            </div>
+
+        );
+    }
+}
 
 class FunctionList extends Component{
 
@@ -9,7 +27,7 @@ class FunctionList extends Component{
 
         this.state = {
             itemList: this.props.items,
-            show: this.props.items,
+            // show: this.props.items,
         }
     }
     
@@ -19,25 +37,21 @@ class FunctionList extends Component{
 
     render() {
         var tasks = [];
-        this.state.show.forEach(element => {
-            const newItem = <FunctionItems
+        this.state.itemList.forEach(element => {
+            const newItem = <FunctionIcon
                 key={element.name} 
                 bgcolor = {element.bgcolor}
                 name = {element.name}
-                args = {element.args}
-                express = {false}
-                items = {this.state.itemList}
-            
             />
             tasks.push(newItem);
         });
 
         return(
-            <div className="wip"
-                >
+            <div>
                 <span className="task-header">Fucntion List</span>
                     {tasks}
             </div>
+                
         );
     }
 }

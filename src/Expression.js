@@ -6,24 +6,37 @@ import FunctionHolder from './FunctionHolder.js'
 class Expression extends Component {
     state = {
         tasks: [
-            {name: "f(x,y,z)", bgcolor: "green", args: 3},
-            {name: "g(x,y,z)", bgcolor: "yellow", args: 3},
-            {name: "f(x,y)", bgcolor: "blue", args: 2},
-            {name: "g(x,y)", bgcolor: "pink", args: 2},
-            {name: "f(x)", bgcolor: "skyblue", args: 1},
-            {name: "f()", bgcolor: "grey", args: 0},
+            {name: "add(x,y)", bgcolor: "green", args: 2
+            , func: (x,y) => {return x + y;}},
+            {name: "div(x,y)", bgcolor: "yellow", args: 2,
+                func: (x, y) => {return x / y;}},
+            {name: "abs(x)", bgcolor: "blue", args: 1,
+                func: (x) => {return Math.abs(x);}},
+            {name: "mult(x,y)", bgcolor: "pink", args: 2,
+                func: (x, y) => {return x * y;}},
+            {name: "sqrt(x)", bgcolor: "skyblue", args: 1,
+                func: (x) => {return Math.sqrt(x);}},
+            {name: "mod(x,y)", bgcolor: "grey", args: 2, 
+                func: (x,y) => {return x % y;}},
         ],
     }
 
     render() {
         return (
 
-                <div className="container-drag">
-                    <h2 className="header">Expression App</h2>
+                <div>
+                    <header>Expression App</header>
                     
-                    <FunctionList items={this.state.tasks}/>
-                    <FunctionHolder items = {this.state.tasks}/>
-                    <div className="user-guide">
+                    <section className="wip">
+                        <FunctionList items={this.state.tasks}/>
+                    </section>
+                    
+                    <aside>
+
+                        <FunctionHolder items = {this.state.tasks}/>
+                    </aside>
+                    
+                    <footer>
 
                         <ul>
                             <li>User Guide: Drag function from function list and drop into express area to add function; </li>
@@ -31,7 +44,7 @@ class Expression extends Component {
                             <li>Place holder can take function as input, which will create a expression chain.</li>
                         </ul>
                     
-                    </div>
+                    </footer>
                 </div>
             
         );

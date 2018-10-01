@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import './index.css'
 
 
+class PlaceHolder extends Component{
+
+    render(){
+        return(
+            <div className="place-holder">
+                <textarea></textarea>
+            </div>
+        );
+    }
+}
+
 class FunctionItems extends Component{
 
     constructor(props){
@@ -22,11 +33,6 @@ class FunctionItems extends Component{
             show: this.show,
         }
         
-    }
-
-    onDragStart = (ev, id) =>{
-        // console.log('drag start:', id);
-        ev.dataTransfer.setData("id", id);
     }
 
     onDrop = (ev) => {
@@ -60,7 +66,7 @@ class FunctionItems extends Component{
 
         const icon = (
             <div
-                className="draggable"
+                className="icon"
                 style={{backgroundColor: this.state.bgcolor}}
             >
                 {this.state.name}
@@ -95,16 +101,7 @@ class FunctionItems extends Component{
         var placeHolders  = [];
         for(var i=0; i<this.props.args; i++){
             placeHolders.push(
-                <div 
-                    key = {i}
-                    id = {i}
-                    onDrop = {(e) => {this.onDrop(e)}}
-                    onDoubleClick = {(e) => {this.onDoubleClick(e)}}
-                    className="place-holder" 
-                    style={{display: this.state.express ? "inline" : "none"}}
-                >
-                    {tasks[i]}
-                </div>
+                <PlaceHolder />
             );
         }
         return (

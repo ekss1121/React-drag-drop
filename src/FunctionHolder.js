@@ -52,7 +52,6 @@ class FunctionHolder extends Component{
                 args = {item.args}
                 express = {true}
                 items = {this.state.itemList}
-
                 />
             tasks.push(newItem);
             }
@@ -60,7 +59,7 @@ class FunctionHolder extends Component{
         });
 
         return(
-            <div className="droppable"
+            <div className = "droppable"
                 onDragOver = { (e) => {this.onDragOver(e)}}
                 onDrop = { (e) => {this.onDrop(e)}}
                 onDoubleClick = {(e) => {this.onDoubleClick(e)}}
