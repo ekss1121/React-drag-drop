@@ -10,10 +10,10 @@ class FunctionIcon extends Component{
     render(){
         return(
             <div className="icon" 
-            style={{backgroundColor: this.props.bgcolor}}
+            style={{backgroundColor: this.props.task.bgcolor}}
             draggable
-            onDragStart = {(e, id) => this.onDragStart(e, this.props.name)}>
-                {this.props.name}
+            onDragStart = {(e, id) => this.onDragStart(e, this.props.task.name)}>
+                {this.props.task.name}
             </div>
 
         );
@@ -22,14 +22,6 @@ class FunctionIcon extends Component{
 
 class FunctionList extends Component{
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            itemList: this.props.items,
-            // show: this.props.items,
-        }
-    }
     
     onDragOver = (ev) =>{
         ev.preventDefault();
@@ -37,18 +29,17 @@ class FunctionList extends Component{
 
     render() {
         var tasks = [];
-        this.state.itemList.forEach(element => {
+        this.props.items.forEach(element => {
             const newItem = <FunctionIcon
                 key={element.name} 
-                bgcolor = {element.bgcolor}
-                name = {element.name}
+                task = {element}
             />
             tasks.push(newItem);
         });
 
         return(
-            <div>
-                <span className="task-header">Fucntion List</span>
+            <div className="list">
+                <h2 className="task-header">Fucntion List</h2>
                     {tasks}
             </div>
                 

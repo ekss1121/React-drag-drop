@@ -1,117 +1,141 @@
 import React, { Component } from 'react';
-import './index.css'
+import './index.css';
 
+// class placeHolders extends Component{
+
+// }
 
 class PlaceHolder extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            task: this.props.task,
+            result: 0,
+        }
+    }
+
+    handleUpdate = (result) =>{
+        
+        this.props.updateResult(result, this.props.id);
+        // this.setState({result: result});
+    }
+
+    handleOnChange = (ev) =>{
+        let v = parseFloat(ev.target.value);
+        // console.log(v);
+        this.handleUpdate(v);
+        this.setState({result: parseFloat(v)});
+    }
+
+    handleDrop = (ev) => {
+        ev.stopPropagation();
+        let id = ev.dataTransfer.getData("id");
+        let task = {};
+        for(let i in this.props.items){
+            let cur = this.props.items[i];
+            if(cur.name === id){
+                task = cur;
+            }
+        }
+        // let task = JSON.parse(ev.dataTransfer.getData("task"));
+        this.setState({
+            task: task,
+        })
+    }
+
+    handleRemove = (ev) => {
+        ev.stopPropagation();
+        this.setState({
+            task: undefined,
+        })
+    }
+
     render(){
-        return(
-            <div className="place-holder">
-                <textarea></textarea>
-            </div>
-        );
+        if(this.state.task !== undefined){
+            return (
+                <FunctionItems 
+                task = {this.state.task}
+                updateResult = {this.handleUpdate}
+                items = {this.props.items}
+                handleRemove = {this.handleRemove}
+                />
+            );
+        } else {
+            return (
+                <textarea onChange = {(ev)=>{this.handleOnChange(ev)}}
+                        onDrop = {(ev) => {this.handleDrop(ev)}}
+                        placeholder="input"
+                ></textarea>
+            );
+        }
+        
     }
 }
+
 
 class FunctionItems extends Component{
 
     constructor(props){
         super(props);
-        this.show = [];
-        for(var i=0; i<props.args; i++){
-            this.show.push([]);
-        }
-        // console.log(this.show);
-
 
         this.state = {
-            name: this.props.name,
-            args: this.props.args,
-            bgcolor: this.props.bgcolor,
-            express: this.props.express,
-            itemList: this.props.items,
-            show: this.show,
+            result: 0,
+            task: this.props.task,
         }
+
+        this.input = [];
+        // console.log(this.props.task);
+        this.input.length = this.props.task.args;
         
     }
 
-    onDrop = (ev) => {
-        ev.stopPropagation();
-        let index = ev.target.id;
-        let id = ev.dataTransfer.getData("id");
-        var array = this.state.show.slice();
-        this.state.itemList.forEach(item => {
-            if(item.name === id && !array[index].includes(id)){
-                array[index].push(id);
-            }
-        });
-
-
-        this.setState({show: array});
-    };
-
-    onDoubleClick = (e) =>{
-        e.stopPropagation();
-        let id = e.target.innerText;
-        let key = e.currentTarget.id;
-        console.log(key);
+    handleUpdate = (result, id)=>{
+        // console.log(id);
         
-        var array = this.state.show.slice();
-        var index = array[key].indexOf(id);
-        array[key].splice(index,1);
-        this.setState({show: array});
+        this.input[id] = result;
+        // console.log(this.input);        
+        let newResult = this.props.task.func(this.input);
+        this.props.updateResult(newResult);
+        this.setState({result: newResult});
+        
     }
 
-    render() {
+    handleRemove = (ev) => {
+        this.props.handleRemove(ev);
+    }
 
-        const icon = (
-            <div
-                className="icon"
-                style={{backgroundColor: this.state.bgcolor}}
-            >
-                {this.state.name}
+
+
+    render(){
+        let placeHolders = [];
+        for(let i=0; i<this.state.task.args; i++){
+            const holder = <PlaceHolder
+                key = {i}
+                id = {i}
+                items = {this.props.items}
+                updateResult = {this.handleUpdate}
+            />;
+            placeHolders.push(holder);
+        }
+
+        const icon = <div
+                        onDoubleClick = {(ev) => {this.handleRemove(ev)}}
+                        >
+            {this.state.task.name}
+
             </div>
-        );
 
-        var tasks = [];
-        for(var j=0; j<this.state.args; j++){
-            tasks.push([]);
-        }
-        // console.log(this.state);
-        
-        var show = this.state.show.slice();
-        this.state.itemList.forEach(item => {
-
-            for(var i=0; i<this.state.args; i++){
-                if(show[i].includes(item.name)){
-                    const newItem = <FunctionItems
-                    key={item.name} 
-                    bgcolor = {item.bgcolor}
-                    name = {item.name}
-                    args = {item.args}
-                    express = {true}
-                    items = {this.state.itemList}
-                    />
-                tasks[i].push(newItem);
-                }
-            }
-            
-        });
-
-        var placeHolders  = [];
-        for(var i=0; i<this.props.args; i++){
-            placeHolders.push(
-                <PlaceHolder />
-            );
-        }
         return (
-            <div className="function-item" draggable
-            onDragStart = {(e, id) => this.onDragStart(e, this.state.name)}>
+            <div className="function-item"
+            style={{backgroundColor: this.state.task.bgcolor}}
+            >
                 {icon}
                 {placeHolders}
             </div>
         );
     }
+
 }
 
 export default FunctionItems;

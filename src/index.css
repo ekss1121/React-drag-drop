@@ -1,95 +1,92 @@
-body {
+.App {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-.icon{
-  text-align: center;
+section {
   display: flex;
-  border-radius: 3px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  height: 50px;
-}
-
-.function-item{
-  text-align: center;
-  display: flex;
-  border-radius: 3px;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.wip{
-  float: left;
-  margin: 1.5%;
-  width: 152px;
-  height: 70vh;
-  background-color: white;
-  border: 1px dotted;
-}
-
-.droppable {
-  float: right;
-  margin: 1.5%;
-  width: 70%;
-  height: 100vh;
-  top: 20;
-  background-color: whitesmoke;
-}
-
-.draggable {
-  width: 150px;
-  height: 50px;
-  background-color: yellow;
-  border: 1px green;
-  border-radius: 3px;
-  margin: 3px;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  /* line-height: 5em; */
+  margin: 0px;
+  justify-content: center;
 }
 
 header {
+  height: 50px;
+  background-color: rgb(110, 14, 14);
+}
+
+h1 {
   text-align: center;
   color: white;
-  font-size: 25px;
-  height: 30px;
-  display: inline-block;
-  background-color: rgb(110, 14, 14);
-  width: 100%;
+  line-height: 50px;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  background-color: antiquewhite;
 }
 
 footer{
-    color: white;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(0, 130, 139);
-    width: 100%;
+  color: black;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 
-.task-header {
+textarea {
+  margin-left:5px;
+  border-radius: 2px;
+}
+
+.holder {
+  margin: auto;
+  flex-grow: 6;
+  height: 40%;
+}
+
+.list {
+  margin: 0px;
+  flex-grow: 1;
+}
+
+.icon {
+  height: 30px;
+  width: 100px;
+  margin: 2px;
   text-align: center;
-  height: 25px;
-  font-size: 20px;
-  display: inline-block;
-  background-color: lightblue;
+  border: black 1px;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.canvas {
+  display: flex;
+  flex-direction: column;
+  background-color: #E2E3E5;
+  border: dashed black 1px;
+  min-height: 250px;
   width: 100%;
 }
 
-
-.place-holder {
-  height: 100px auto;
-  background-color: cyan;
-  border: 1px dotted;
-  margin: 5px;
-  flex-grow: 1;
-  border-radius: 3px;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+.function-item {
+  display: flex;
+  border: black 1px solid;
+  padding:2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.user-guide{
-  font-size:12px;
+.expression {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
 
+.rst {
+  background-color: rgb(183, 214, 183);
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
 }
 
 header,
