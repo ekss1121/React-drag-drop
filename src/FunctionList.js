@@ -1,39 +1,33 @@
 import React, {Component} from 'react';
 import './index.css'
 
-class FunctionIcon extends Component{
-
-    onDragStart = (e, id) =>{
-        e.dataTransfer.setData("id", id);
-    }
-
-    render(){
-        return(
-            <div className="icon" 
-            style={{backgroundColor: this.props.task.bgcolor}}
-            draggable
-            onDragStart = {(e, id) => this.onDragStart(e, this.props.task.name)}>
-                {this.props.task.name}
-            </div>
-
-        );
-    }
-}
-
 class FunctionList extends Component{
-
+    /**
+     * The class holding rendering all function as a 
+     * draggable icon.
+     * @param {tasks}
+     */
     
     onDragOver = (ev) =>{
         ev.preventDefault();
     }
 
+    onDragStart = (e, id) =>{
+        e.dataTransfer.setData("id", id);
+    }
+
     render() {
         var tasks = [];
-        this.props.items.forEach(element => {
-            const newItem = <FunctionIcon
-                key={element.name} 
-                task = {element}
-            />
+        this.props.tasks.forEach(item => {
+            const newItem = 
+            <div 
+                className="icon" 
+                key={item.name}
+                style={{backgroundColor: item.bgcolor}}
+                draggable
+                onDragStart = {(e, id) => this.onDragStart(e, item.name)}>
+                {item.name}
+            </div>
             tasks.push(newItem);
         });
 

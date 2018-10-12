@@ -1,17 +1,81 @@
 import React, { Component } from 'react';
 import './index.css';
 
-// class placeHolders extends Component{
 
-// }
+class FunctionItems extends Component{
+    /**
+     * 
+     * @param {task, tasks, onChangeCallBack, onDoubleClickCallBack} props 
+     */
+    constructor(props){
+        super(props);
+
+        this.state = {
+            result: 0,
+        }
+
+        this.input = [];
+        console.log(this.props.task);
+        
+        this.input.length = this.props.task.args;
+        
+    }
+
+    handleUpdate = (result, id)=>{
+        // id: the index of the input box
+        
+        this.input[id] = result;
+        // Evaluate the result        
+        let newResult = this.props.task.func(this.input);
+        this.props.updateResult(newResult);
+        this.setState({result: newResult});
+        
+    }
+
+    handleRemove = (ev) => {
+        this.props.handleRemove(ev);
+    }
+
+
+
+    render(){
+        let placeHolders = [];
+        for(let i=0; i<this.props.task.args; i++){
+            const holder = <PlaceHolder
+                key = {i}
+                id = {i}
+                tasks = {this.props.tasks}
+                updateResult = {this.handleUpdate}
+            />;
+            placeHolders.push(holder);
+        }
+
+        const icon = <div
+                        onDoubleClick = {(ev) => {this.handleRemove(ev)}}
+                        >
+            {this.props.task.name}
+
+            </div>
+
+        return (
+            <div className="function-item"
+            style={{backgroundColor: this.props.task.bgcolor}}
+            >
+                {icon}
+                {placeHolders}
+            </div>
+        );
+    }
+
+}
 
 class PlaceHolder extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            task: this.props.task,
             result: 0,
+            task: undefined,
         }
     }
 
@@ -32,8 +96,8 @@ class PlaceHolder extends Component{
         ev.stopPropagation();
         let id = ev.dataTransfer.getData("id");
         let task = {};
-        for(let i in this.props.items){
-            let cur = this.props.items[i];
+        for(let i in this.props.tasks){
+            let cur = this.props.tasks[i];
             if(cur.name === id){
                 task = cur;
             }
@@ -57,7 +121,7 @@ class PlaceHolder extends Component{
                 <FunctionItems 
                 task = {this.state.task}
                 updateResult = {this.handleUpdate}
-                items = {this.props.items}
+                tasks = {this.props.tasks}
                 handleRemove = {this.handleRemove}
                 />
             );
@@ -71,71 +135,6 @@ class PlaceHolder extends Component{
         }
         
     }
-}
-
-
-class FunctionItems extends Component{
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            result: 0,
-            task: this.props.task,
-        }
-
-        this.input = [];
-        // console.log(this.props.task);
-        this.input.length = this.props.task.args;
-        
-    }
-
-    handleUpdate = (result, id)=>{
-        // console.log(id);
-        
-        this.input[id] = result;
-        // console.log(this.input);        
-        let newResult = this.props.task.func(this.input);
-        this.props.updateResult(newResult);
-        this.setState({result: newResult});
-        
-    }
-
-    handleRemove = (ev) => {
-        this.props.handleRemove(ev);
-    }
-
-
-
-    render(){
-        let placeHolders = [];
-        for(let i=0; i<this.state.task.args; i++){
-            const holder = <PlaceHolder
-                key = {i}
-                id = {i}
-                items = {this.props.items}
-                updateResult = {this.handleUpdate}
-            />;
-            placeHolders.push(holder);
-        }
-
-        const icon = <div
-                        onDoubleClick = {(ev) => {this.handleRemove(ev)}}
-                        >
-            {this.state.task.name}
-
-            </div>
-
-        return (
-            <div className="function-item"
-            style={{backgroundColor: this.state.task.bgcolor}}
-            >
-                {icon}
-                {placeHolders}
-            </div>
-        );
-    }
-
 }
 
 export default FunctionItems;

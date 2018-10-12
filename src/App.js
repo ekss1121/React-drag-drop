@@ -4,7 +4,8 @@ import './index.css';
 import FunctionList from './FunctionList.js'
 import ExpressionHolder from './ExpressionHolder.js'
 class App extends Component {
-    state = {
+    
+    state = { // Object to hold all user defined funtions
         tasks: [
             {name: "add(x,y)", bgcolor: "blue", args: 2
             , func: (x) => {return x[0] + x[1];}},
@@ -30,12 +31,11 @@ class App extends Component {
                     </header>
                     
                     <section>
-                        <FunctionList items={this.state.tasks}/>
-                        <ExpressionHolder items = {this.state.tasks}/>
+                        <FunctionList tasks={this.state.tasks}/>
+                        <ExpressionHolder tasks = {this.state.tasks}/>
                     </section>
                     
                     <footer>
-
                         <ul>
                             <li>User Guide: Drag function from function list and drop into express area to add a expression; </li>
                             <li>Double click to remove a function.</li>

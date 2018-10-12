@@ -2,58 +2,15 @@ import React, {Component} from 'react';
 import './index.css'
 import FunctionItems from './FunctionItems';
 
-class Expression extends Component{
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            result: 0,
-
-        }
-    }
-
-    handleUpdateResult = (newResult) => {
-        if(isNaN(newResult)){
-            newResult = 'invalid input';
-        }
-        this.setState({result: newResult});
-    }
-
-    handleRemove = (ev) =>{
-        
-        this.props.callbackDBClick(ev, this.props.id);
-    }
-
-    render(){
-        
-        return(
-            <div className="expression"
-                onDoubleClick = {(ev) => this.handleRemove(ev)}
-            >
-                <FunctionItems
-                task = {this.props.task} 
-                items = {this.props.items}
-                updateResult = {this.handleUpdateResult}
-                handleRemove = {this.handleRemove}
-                />
-
-                <div className="rst">
-                    = {this.state.result}
-                </div>
-                 
-            </div>
-        );
-    }
-}
-
 class ExpressionHolder extends Component{
-
+    /**
+     * Class to render expression on the canvas
+     * @param {tasks} props 
+     */
     constructor(props){
         super(props);
         this.index = 0;
         this.state = {
-            items: this.props.items,
             expressions: [],
         };
     }
@@ -67,8 +24,8 @@ class ExpressionHolder extends Component{
         // let task = JSON.parse(ev.dataTransfer.getData("task"));
         let id = ev.dataTransfer.getData("id");
         let task = {};
-        for(let i in this.state.items){
-            let cur = this.state.items[i];
+        for(let i in this.props.tasks){
+            let cur = this.props.tasks[i];
             if( id === cur.name){
                 task = cur;
                 break;
@@ -78,7 +35,7 @@ class ExpressionHolder extends Component{
         let expressions = this.state.expressions.slice();
         const expression = <Expression 
             task = {task}
-            items = {this.state.items}
+            tasks = {this.props.tasks}
             key = {task.name + "" + this.index}
             id = {task.name + "" + this.index++}
             callbackDBClick = {this.handleDoubleClick}
@@ -117,6 +74,55 @@ class ExpressionHolder extends Component{
                     {this.state.expressions}
                 </div>
 
+            </div>
+        );
+    }
+}
+
+class Expression extends Component{
+    /**
+     *  The class handling the expression part
+     *  Evalatuate the expression chain inside and print output
+     * @param {tasks, task, id, doubleClickCallBack} props 
+     */
+    constructor(props){
+        super(props);
+
+        this.state = {
+            result: 0,
+
+        }
+    }
+
+    handleUpdateResult = (newResult) => {
+        if(isNaN(newResult)){
+            newResult = 'invalid input';
+        }
+        this.setState({result: newResult});
+    }
+
+    handleRemove = (ev) =>{
+        
+        this.props.callbackDBClick(ev, this.props.id);
+    }
+
+    render(){
+        
+        return(
+            <div className="expression"
+                onDoubleClick = {(ev) => this.handleRemove(ev)}
+            >
+                <FunctionItems
+                task = {this.props.task} 
+                tasks = {this.props.tasks}
+                updateResult = {this.handleUpdateResult}
+                handleRemove = {this.handleRemove}
+                />
+
+                <div className="rst">
+                    = {this.state.result}
+                </div>
+                 
             </div>
         );
     }
