@@ -5,6 +5,9 @@
 3. run : `npm install` if node modules missing
 4. open `localhost:3000' in your browser
 
+### A screen shot of the application:
+![alt text](./demo.png "Screen shot of the app")
+
 This project also available on Github:
 https://github.com/ekss1121/React-drag-drop
 
