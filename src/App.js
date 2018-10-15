@@ -37,10 +37,11 @@ class App extends Component {
                     
                     <footer>
                         <ul>
-                            <li>User Guide: Drag function from function list and drop into express area to add a expression; </li>
-                            <li>Double click to remove a function.</li>
-                            <li>Place holder can take function as input, which will create a expression chain.</li>
-                            <li>Place holder can also take numeric input and show result on the right.</li>
+                            <li>User Guide: Drag function from function list and drop it into express area to add an expression; </li>
+                            <li>Double click to remove a expression or nested expression.</li>
+                            <li>Input area can also take numeric input and show result on the right.</li>
+                            <li>Input area can also be nested expression, which will create a expression chain.</li>
+                            
                         </ul>
                     
                     </footer>

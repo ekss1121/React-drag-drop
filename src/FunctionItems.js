@@ -25,7 +25,7 @@ class FunctionItems extends Component{
         // id: the index of the input box
         
         this.input[id] = result;
-        // Evaluate the result        
+        // Evaluate the final result        
         let newResult = this.props.task.func(this.input);
         this.props.updateResult(newResult);
         this.setState({result: newResult});
